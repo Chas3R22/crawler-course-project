@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+<body class="px-5">
+    <h1>Results for {{ url }}</h1>
+    {% if error %}
+        <p style="color: red;">Error: {{ error }}</p>
+    {% else %}
+        <h2>Metadata:</h2>
+        <p class="lead"><strong>Title:</strong> {{ title }}</p>
+        <p class="lead"><strong>Description:</strong> {{ description }}</p>
+        <p class="lead"><strong>Keywords:</strong> {{ keywords }}</p>
+
+        <h2 class="lead">Extracted Text (First 1000 characters):</h2>
+        <p class="lead">{{ text }}</p>
+
+        <h2 class="lead">Most Common Words:</h2>
+        <ol class="list-group list-group-numbered lead">
+            {% for word, count in common_words %}
+                <li class="list-group-item">{{ word }}: {{ count }}</li>
+            {% endfor %}
+        </ol>
+
+        <h2 class="lead">Sentiment Analysis:</h2>
+        <p class="lead"><strong>Positive:</strong> {{ sentiment_scores['pos'] }}</p>
+        <p class="lead"><strong>Neutral:</strong> {{ sentiment_scores['neu'] }}</p>
+        <p class="lead"><strong>Negative:</strong> {{ sentiment_scores['neg'] }}</p>
+        <p class="lead"><strong>Compound:</strong> {{ sentiment_scores['compound'] }}</p>
+
+        <h2 class="lead">Images:</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            {% for image in images %}
+                <div style="width: 200px; text-align: center;">
+                    <img src="{{ image.src }}" class="rounded mx-auto d-block" alt="{{ image.alt }}" style="max-width: 100%; height: auto;">
+                    <p><strong>Alt Text:</strong> {{ image.alt }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <a class="btn btn-success" href="/">Back to Home</a>
+</body>
+</html>

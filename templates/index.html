@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Analyzer</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container-fluid">
+    <h1>Website Analyzer</h1>
+    <form action="/result" method="post">
+        <label for="url">Enter Website URL:</label>
+        <input type="url" id="url" name="url" required>
+        <button class="btn btn-primary" type="submit">Analyze</button>
+    </form>
+</div>
+</body>
+</html>
